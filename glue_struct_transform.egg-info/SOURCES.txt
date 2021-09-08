@@ -1,0 +1,9 @@
+README.md
+setup.py
+glue_struct_transform/GlueStructTransform.py
+glue_struct_transform/__init__.py
+glue_struct_transform/utils.py
+glue_struct_transform.egg-info/PKG-INFO
+glue_struct_transform.egg-info/SOURCES.txt
+glue_struct_transform.egg-info/dependency_links.txt
+glue_struct_transform.egg-info/top_level.txt

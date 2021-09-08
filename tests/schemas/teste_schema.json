@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Generated schema for Root",
+    "type": "object",
+    "properties": {
+        "userId": {
+            "type": "integer"
+        },
+        "id": {
+            "type": "number"
+        },
+        "title": {
+            "type": "string"
+        },
+        "completed": {
+            "type": "boolean"
+        },
+        "testeObject": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "testeObjectInObject": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "testeObjectInObject"
+            ]
+        },
+        "testeArray": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer"
+                    },
+                    "id": {
+                        "type": "number"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "completed": {
+                        "type": "boolean"
+                    },
+                    "testeObject": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "testeObjectInObject": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "name"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name",
+                            "testeObjectInObject"
+                        ]
+                    }
+                },
+                "required": [
+                    "userId",
+                    "id",
+                    "title",
+                    "completed",
+                    "testeObject"
+                ]
+            }
+        }
+    },
+    "required": [
+        "userId",
+        "id",
+        "title",
+        "completed",
+        "testeObject",
+        "array"
+    ]
+}
