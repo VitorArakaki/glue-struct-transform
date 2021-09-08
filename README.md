@@ -24,3 +24,12 @@ schemaLoad = json.load(schema)
 # Pass your json schema in dict type to the function
 result = GlueStructTransform.json_schema_to_glue_struct(schemaLoad)
 ```
+
+### Conversions implementation status
+|Json Schema Type	|Glue Schema type	| Implementation status	|Version
+|-------------------------|---------------------|---------------|----------
+|string	|string	|`implemented`	|`0.1.0`
+|number	|double	|`implemented`	|`0.1.0`
+|integer	|int	|`implemented`	|`0.1.0`
+|object	|struct	|`implemented`	|`0.1.0`
+|array	|array	|`implemented`	|`0.1.0`
