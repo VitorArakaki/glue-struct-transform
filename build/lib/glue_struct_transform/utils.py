@@ -19,6 +19,8 @@ def working_with_objects(item:str, jsonSchemaLoadProp:dict, isArray:bool = False
             objectStruct = f"{values}:int,"
         elif 'boolean' in jsonSchemaObjectProp['properties'][values]['type']:
             objectStruct = f"{values}:boolean,"
+        elif 'null' == jsonSchemaLoadProp[f'{item}']['type']:
+            raise Exception("Null is not acceptable as a schema type on glue schema.")
         elif 'object' in jsonSchemaObjectProp['type']:
             objectStruct = working_with_objects(values, jsonSchemaObjectProp['properties'])
         elif 'array' in jsonSchemaObjectProp['type']:
@@ -46,6 +48,8 @@ def working_with_arrays(item:str, jsonSchemaLoadProp:dict)->str:
         arrayStruct = f"int,"
     elif 'boolean' in jsonSchemaArray['type']:
         arrayStruct = f"boolean,"
+    elif 'null' == jsonSchemaLoadProp[f'{item}']['type']:
+        raise Exception("Null is not acceptable as a schema type on glue schema.")
     elif 'object' in jsonSchemaArray['type']:
         arrayStruct = working_with_objects(item, jsonSchemaLoadProp, True)
     elif 'array' in jsonSchemaArray['type']:
@@ -70,6 +74,8 @@ def working_with_types(item:str, jsonSchemaLoadProp:dict)->str:
         returnStruct = f"{item}:int,"
     elif 'boolean' in jsonSchemaLoadProp[f'{item}']['type']:
         returnStruct = f"{item}:boolean,"
+    elif 'null' == jsonSchemaLoadProp[f'{item}']['type']:
+        raise Exception("Null is not acceptable as a schema type on glue schema.")
     elif 'object' in jsonSchemaLoadProp[f'{item}']['type']:
         returnStruct = working_with_objects(item, jsonSchemaLoadProp)
     elif 'array' in jsonSchemaLoadProp[f'{item}']['type']:

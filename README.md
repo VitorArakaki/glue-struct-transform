@@ -33,3 +33,5 @@ result = GlueStructTransform.json_schema_to_glue_struct(schemaLoad)
 |integer	|int	|`implemented`	|`0.1.0`
 |object	|struct	|`implemented`	|`0.1.0`
 |array	|array	|`implemented`	|`0.1.0`
+|boolean	|boolean	|`implemented`	|`0.1.0`
+|null	|Raises exception	|`implemented`	|`0.1.2`
