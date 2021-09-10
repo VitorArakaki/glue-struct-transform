@@ -9,6 +9,7 @@ python:
 before_install:
   - python --version
   - pip install -U pip
+  - chmod +x script/travis.sh
 
 script:
   - python -m pytest tests/test_json_schema_to_glue_struct.py
