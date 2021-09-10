@@ -4,7 +4,12 @@
 
 A small library that works to read your provided jsonschema and convert it to a glue struct model, in this way you can integrate it in your pipeline or uses it just to get a output and insert manually in your glue table schema.
 
-  
+
+[![PyPI](https://img.shields.io/pypi/v/glue-struct-transform)](https://pypi.org/project/glue-struct-transform/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/glue-struct-transform)](https://pypi.org/project/glue-struct-transform/)
+[![PyPI License](https://img.shields.io/pypi/l/glue-struct-transform)](https://pypi.org/project/glue-struct-transform/)
+[![GITHUB Code Style: black]](https://github.com/psf/black/)
+
 
 ###  Installation
 ```
