@@ -43,7 +43,7 @@ class GlueStructTransform:
     
     def json_to_glue_struct(jsonBody:dict, *args, **kwargs)->str:
         """
-        This function performs a loop for each data inside the json schema to understand the data type and return a string in the glue structure format at the end.
+        This function performs a loop for each data inside the json to understand the data type and return a string in the glue structure format at the end.
         """
 
         objectField = kwargs.get('objectField', None)
