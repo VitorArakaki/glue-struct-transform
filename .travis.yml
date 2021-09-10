@@ -11,7 +11,7 @@ before_install:
   - pip install -U pip
 
 script:
-  - python -m pytest tests/test_json_schema_to_glue_struct.py
+  - python -m pytest tests/
 
 deploy:
   provider: pypi
