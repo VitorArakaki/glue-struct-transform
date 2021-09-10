@@ -15,8 +15,8 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="glue-struct-transform",
-    version="0.2.0",
-    description="This libs works to convert a json schema to a glue schema struct.",
+    version="0.3.0",
+    description="This libs works to convert a json schema or json to a glue schema struct.",
     long_description_content_type="text/markdown",
     long_description=long_description,
     url="",

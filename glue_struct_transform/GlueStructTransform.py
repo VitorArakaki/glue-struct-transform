@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-from utils import working_with_types
+from utils import working_with_types, working_with_types_json_body
 
 class GlueStructTransform:
     """
@@ -21,7 +21,7 @@ class GlueStructTransform:
         """
 
         objectField = kwargs.get('objectField', None)
-        fullSchema = kwargs.get('fullSchema', False)
+        fullSchema = kwargs.get('fullSchema', True)
 
         if fullSchema == False: 
             loopJsonSchemaLoadProp = jsonSchemaLoadProp['properties'][f'{objectField}']['properties']
@@ -36,6 +36,33 @@ class GlueStructTransform:
         if fullSchema == False: 
             finalGlueStruct = f"struct<{tempStruct[:-1]}>"
         elif fullSchema == True:
+            finalGlueStruct =  tempStruct[:-1]
+
+        return finalGlueStruct
+
+    
+    def json_to_glue_struct(jsonBody:dict, *args, **kwargs)->str:
+        """
+        This function performs a loop for each data inside the json schema to understand the data type and return a string in the glue structure format at the end.
+        """
+
+        objectField = kwargs.get('objectField', None)
+        fullBody = kwargs.get('fullBody', True)
+
+        if fullBody == False: 
+            loopJsonBodyLoadProp = jsonBody[f'{objectField}']
+        elif fullBody == True:
+            loopJsonBodyLoadProp = jsonBody
+
+        tempStruct = ""
+
+        for key, value in loopJsonBodyLoadProp.items():
+            result = working_with_types_json_body(key, value, loopJsonBodyLoadProp)
+            tempStruct += result
+
+        if fullBody == False: 
+            finalGlueStruct = f"struct<{tempStruct[:-1]}>"
+        elif fullBody == True:
             finalGlueStruct =  tempStruct[:-1]
 
         return finalGlueStruct

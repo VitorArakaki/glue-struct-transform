@@ -1,0 +1,33 @@
+{
+    "userId": 2,
+    "id": 2,
+    "teste": 22.0,
+    "title": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+    "completed": false,
+    "purchase": {
+      "id": 2,
+      "amount": 885.0,
+      "client": {
+        "firstName": "ABCDEFGHIJKLMNOPQ",
+        "lastName": "ABCDE",
+        "address": "ABCDEFGHIJKLMNOPQRSTU",
+        "age": 20
+      },
+      "products": [
+        {
+            "id": 2,
+            "name": "shirt",
+            "price": 20,
+            "quantity": 1
+        }
+      ]
+    },
+    "testeArray": [
+        {
+            "id": 2,
+            "name": "shirt",
+            "price": 20,
+            "quantity": 1
+        }
+      ]
+  }
