@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
 def test_json_schema_to_glue_struct():
     local_path = pathlib.Path(__file__).parent.absolute()
-    schema = open(r'{}\schemas\teste_schema.json'.format(local_path),)
+    schema = open(r'{}/schemas/teste_schema.json'.format(local_path),)
     schemaLoad = json.load(schema)
 
     test = GlueStructTransform.json_schema_to_glue_struct(schemaLoad)
@@ -21,7 +21,7 @@ def test_json_schema_to_glue_struct():
 
 def test_working_with_arrays():
     local_path = pathlib.Path(__file__).parent.absolute()
-    schema = open(r'{}\schemas\teste_schema.json'.format(local_path),)
+    schema = open(r'{}/schemas/teste_schema.json'.format(local_path),)
     schemaLoad = json.load(schema)['properties']
 
     test = working_with_arrays('testeArray', schemaLoad)[:-1]
@@ -33,7 +33,7 @@ def test_working_with_arrays():
 
 def test_working_with_objects():
     local_path = pathlib.Path(__file__).parent.absolute()
-    schema = open(r'{}\schemas\teste_schema.json'.format(local_path),)
+    schema = open(r'{}/schemas/teste_schema.json'.format(local_path),)
     schemaLoad = json.load(schema)['properties']
 
     test = working_with_objects('testeObject', schemaLoad)[:-1]
