@@ -84,3 +84,100 @@ def working_with_types(item:str, jsonSchemaLoadProp:dict)->str:
         pass
 
     return returnStruct
+
+
+def working_with_objects_json_body(key:str, item:str, jsonBodyLoadProp:dict, isArray:bool = False)->str:
+    """
+    This function works to provide a return in the glue structure format when the data type is specified as an object, further allowing the inclusion of objects in the object and arrays within it.
+    """
+
+    if isArray == True:
+        jsonObjectProp = jsonBodyLoadProp[0]
+        returnStruct = f"struct<"
+    else:
+        jsonObjectProp = jsonBodyLoadProp
+        returnStruct = f"{key}:struct<"
+
+
+    for key, value in jsonObjectProp.items():
+        objectStruct = ""
+        if 'int' in str(type(value)):
+            objectStruct = f"{key}:int,"
+        elif 'float' in str(type(value)):
+            objectStruct = f"{key}:double,"
+        elif 'str' in str(type(value)):
+            objectStruct = f"{key}:string,"
+        elif 'bool' in str(type(value)):
+            objectStruct = f"{key}:boolean,"
+        elif 'NoneType' in str(type(value)):
+            raise Exception("Null is not acceptable as a json value in the json_to_glue_struct function.")
+        elif 'dict' in str(type(value)):
+            objectStruct = working_with_objects_json_body(key, value, jsonObjectProp[key])
+        elif 'list' in str(type(value)):
+            objectStruct = working_with_arrays_json_body(key, value, jsonObjectProp[key])
+        else:
+            pass
+        
+        returnStruct += objectStruct
+    returnStruct = returnStruct[:-1] + ">,"
+
+    return returnStruct
+
+
+def working_with_arrays_json_body(key, value:str, jsonSchemaLoadProp:dict)->str:
+    """
+    This function works to provide a return in the glue structure format when the data type is specified as array, further allowing the inclusion of objects in the array and other arrays within it.
+    """
+    returnArrayStruct = f"{key}:array<"
+    
+
+    if '{' in str(jsonSchemaLoadProp) and '}' in str(jsonSchemaLoadProp):
+            returnArrayStruct += working_with_objects_json_body(key, value, jsonSchemaLoadProp, True)
+    else:
+        jsonSchemaArray = jsonSchemaLoadProp[0]
+        for key, value in jsonSchemaArray.items():
+            if 'int' in str(type(value)):
+                arrayStruct = f"int,"
+            elif 'float' in str(type(value)):
+                arrayStruct = f"double,"
+            elif 'str' in str(type(value)):
+                arrayStruct = f"string,"
+            elif 'bool' in str(type(value)):
+                arrayStruct = f"boolean,"
+            elif 'NoneType' in str(type(value)):
+                raise Exception("Null is not acceptable as a json value in the json_to_glue_struct function.")
+            elif 'list' in str(type(value)):
+                arrayStruct = working_with_arrays_json_body(key, value, jsonSchemaArray[key])
+            else:
+                pass
+
+            returnArrayStruct += arrayStruct
+    
+    returnArrayStruct = returnArrayStruct[:-1] + ">,"
+    return returnArrayStruct
+    
+
+def working_with_types_json_body(key:str, value:str, jsonBodyLoadProp:dict)->str:
+    """
+    This function performs the basic handling for simple data types like number, string, integer... And for more complex types like array and object it asks for the help of another function.
+    """
+    returnStruct = ""
+    if 'int' in str(type(value)):
+        returnStruct = f"{key}:int,"
+    elif 'float' in str(type(value)):
+        returnStruct = f"{key}:double,"
+    elif 'str' in str(type(value)):
+        returnStruct = f"{key}:string,"
+    elif 'bool' in str(type(value)):
+        returnStruct = f"{key}:boolean,"
+    elif 'NoneType' in str(type(value)):
+        raise Exception("Null is not acceptable as a json value in the json_to_glue_struct function.")
+    elif 'dict' in str(type(value)):
+        returnStruct = working_with_objects_json_body(key, value, jsonBodyLoadProp[key])
+    elif 'list' in str(type(value)):
+        returnStruct = working_with_arrays_json_body(key, value, jsonBodyLoadProp[key])
+    else:
+        pass
+
+
+    return returnStruct
