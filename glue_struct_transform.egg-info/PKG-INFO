@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: glue-struct-transform
-Version: 0.1.2
+Version: 0.1.3
 Summary: This libs works to convert a json schema to a glue schema struct.
 Home-page: UNKNOWN
 Author: Vitor Guirardeli Arakaki

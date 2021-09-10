@@ -5,11 +5,10 @@ from utils import working_with_types
 
 class GlueStructTransform:
     """
-    Instantiate a multiplication operation.
-    Numbers will be multiplied by the given multiplier.
+    Instantiate a GlueStructTransform operation.
     
-    :param multiplier: The multiplier.
-    :type multiplier: int
+    This is the glue transform class, you  can call the function that converts:
+    - Json Schema > Glue Struct
     """
 
     def __init__(self):
