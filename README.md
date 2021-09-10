@@ -8,7 +8,7 @@ A small library that works to read your provided jsonschema and convert it to a 
 [![PyPI](https://img.shields.io/pypi/v/glue-struct-transform)](https://pypi.org/project/glue-struct-transform/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/glue-struct-transform)](https://pypi.org/project/glue-struct-transform/)
 [![PyPI License](https://img.shields.io/pypi/l/glue-struct-transform)](https://pypi.org/project/glue-struct-transform/)
-[![Code Style: black]](https://github.com/psf/black/)
+[![GITHUB Code Style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black/)
 
 
 ###  Installation
