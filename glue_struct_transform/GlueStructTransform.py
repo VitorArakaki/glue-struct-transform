@@ -15,14 +15,27 @@ class GlueStructTransform:
         pass
 
 
-    def json_schema_to_glue_struct(jsonSchemaLoadProp:dict)->str:
+    def json_schema_to_glue_struct(jsonSchemaLoadProp:dict, *args, **kwargs)->str:
         """
         This function performs a loop for each data inside the json schema to understand the data type and return a string in the glue structure format at the end.
         """
+
+        objectField = kwargs.get('objectField', None)
+        fullSchema = kwargs.get('fullSchema', False)
+
+        if fullSchema == False: 
+            loopJsonSchemaLoadProp = jsonSchemaLoadProp['properties'][f'{objectField}']['properties']
+        elif fullSchema == True:
+            loopJsonSchemaLoadProp = jsonSchemaLoadProp['properties']
+
         tempStruct = ""
-        for item in jsonSchemaLoadProp['properties']:
-            result = working_with_types(item, jsonSchemaLoadProp['properties'])
+        for item in loopJsonSchemaLoadProp:
+            result = working_with_types(item, loopJsonSchemaLoadProp)
             tempStruct += result
-        finalGlueStruct =  tempStruct[:-1]
-        # finalGlueStruct = f"struct<{tempStruct[:-1]}>"
+
+        if fullSchema == False: 
+            finalGlueStruct = f"struct<{tempStruct[:-1]}>"
+        elif fullSchema == True:
+            finalGlueStruct =  tempStruct[:-1]
+
         return finalGlueStruct
