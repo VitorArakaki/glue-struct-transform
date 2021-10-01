@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
-from utils import working_with_types, working_with_types_json_body
+from utils import working_with_types, working_with_types_json_body, struct_validator
 
 class GlueStructTransform:
     """
@@ -38,7 +38,10 @@ class GlueStructTransform:
         elif fullSchema == True:
             finalGlueStruct =  tempStruct[:-1]
 
-        return finalGlueStruct
+        glue_schema_string_validation = struct_validator(finalGlueStruct)
+
+        if glue_schema_string_validation is True:
+            return finalGlueStruct
 
     
     def json_to_glue_struct(jsonBody:dict, *args, **kwargs)->str:
@@ -64,5 +67,8 @@ class GlueStructTransform:
             finalGlueStruct = f"struct<{tempStruct[:-1]}>"
         elif fullBody == True:
             finalGlueStruct =  tempStruct[:-1]
+        
+        glue_schema_string_validation = struct_validator(finalGlueStruct)
 
-        return finalGlueStruct
+        if glue_schema_string_validation is True:
+            return finalGlueStruct

@@ -57,7 +57,7 @@ def working_with_arrays(item:str, jsonSchemaLoadProp:dict)->str:
     else:
         pass
 
-    returnArrayStruct += arrayStruct
+    returnArrayStruct += arrayStruct + ">,"
     return returnArrayStruct
 
 
@@ -181,3 +181,14 @@ def working_with_types_json_body(key:str, value:str, jsonBodyLoadProp:dict)->str
 
 
     return returnStruct
+
+
+def struct_validator(glueStructString:str)->bool:
+        strict_inequality_count = glueStructString.count('<') + glueStructString.count('>')
+
+        if (strict_inequality_count % 2) != 0:
+            raise Exception('The count of strict inequality is not Even.')
+        elif "<>" in glueStructString or "< >" in glueStructString or "><" in glueStructString or "> <" in glueStructString:
+            raise Exception('The strict inequality is empty or malformed.')
+        else:
+            return True
