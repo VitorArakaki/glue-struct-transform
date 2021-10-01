@@ -15,11 +15,11 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="glue-struct-transform",
-    version="0.1.3",
-    description="This libs works to convert a json schema to a glue schema struct.",
+    version="0.3.3",
+    description="This libs works to convert a json schema or json to a glue schema struct.",
     long_description_content_type="text/markdown",
     long_description=long_description,
-    url="",
+    url="https://github.com/VitorArakaki/glue-struct-transform",
     author="Vitor Guirardeli Arakaki",
     author_email="vi.arakaki@hotmail.com",
     license="MIT",
@@ -32,6 +32,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Operating System :: OS Independent"
     ],
     packages=["glue_struct_transform"],
