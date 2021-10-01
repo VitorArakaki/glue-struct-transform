@@ -14,7 +14,7 @@ def test_json_schema_to_glue_struct_full_schema():
 
     test = GlueStructTransform.json_schema_to_glue_struct(schemaLoad)
 
-    resultAwaited = "userId:int,id:double,title:string,completed:boolean,testeObject:struct<id:int,name:string,testeObjectInObject:struct<id:double,name:string>>,testeArray:array<struct<userId:int,id:double,title:string,completed:boolean,testeObject:struct<id:double,name:string,testeObjectInObject:struct<id:double,name:string>>>"
+    resultAwaited = "userId:int,id:double,title:string,completed:boolean,testeObject:struct<id:int,name:string,testeObjectInObject:struct<id:double,name:string>>,testeArray:array<struct<userId:int,id:double,title:string,completed:boolean,testeObject:struct<id:double,name:string,testeObjectInObject:struct<id:double,name:string>>>,>"
 
     assert test == resultAwaited
 
