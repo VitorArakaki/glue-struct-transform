@@ -9,14 +9,14 @@ jobs:
           command: |  # create whl and use pipenv to install dependencies
             python setup.py sdist bdist_wheel
             sudo pip install pipenv
-            pipenv install dist/glue_struct_transform-0.3.5-py3-none-any.whl
+            pipenv install dist/glue_struct_transform-0.3.6-py3-none-any.whl
             pipenv install pytest
       - run:
           command: |  # Run test suite
             pipenv run pytest
   pypi_publish:
     docker:
-      - image: circleci/python:3.6.4
+      - image: circleci/python:3.7.4
     steps:
       - checkout  # checkout source code to working directory
       - run:
