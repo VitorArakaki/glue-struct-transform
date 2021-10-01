@@ -1,5 +1,5 @@
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
+from setuptools import setup
 
 # To use a consistent encoding
 from codecs import open
@@ -9,16 +9,16 @@ from os import path
 HERE = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-# with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
-#     long_description = f.read()
+with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 # This call to setup() does all the work
 setup(
     name="glue-struct-transform",
     version="0.3.4",
     description="This libs works to convert a json schema or json to a glue schema struct.",
-    long_description = 'file: README.md',
-long_description_content_type = 'text/markdown',
+    long_description = long_description,
+    long_description_content_type = 'text/markdown',
     url="https://github.com/VitorArakaki/glue-struct-transform",
     author="Vitor Guirardeli Arakaki",
     author_email="vi.arakaki@hotmail.com",
