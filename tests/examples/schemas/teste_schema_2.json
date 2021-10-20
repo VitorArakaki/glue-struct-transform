@@ -1,0 +1,219 @@
+{
+
+    "$schema": "http://json-schema.org/draft-07/schema#",
+
+    "title": "Generated schema for Root",
+
+    "type": "object",
+
+    "properties": {
+
+      "campo1": {
+
+        "type": "number"
+
+      },
+
+      "campo2": {
+
+        "type": "number"
+
+      },
+
+      "campo3": {
+
+        "type": "string"
+
+      },
+
+      "campo4": {
+
+        "type": "boolean"
+
+      },
+
+      "campo5": {
+
+        "type": "object",
+
+        "properties": {
+
+          "campo6": {
+
+            "type": "string"
+
+          },
+
+          "campo7": {
+
+            "type": "object",
+
+            "properties": {
+
+              "campo8": {
+
+                "type": "number"
+
+              },
+
+              "campo9": {
+
+                "type": "array",
+
+                "items": {
+
+                  "type": "object",
+
+                  "properties": {
+
+                    "campo10": {
+
+                      "type": "string"
+
+                    },
+
+                    "campo11": {
+
+                      "type": "array",
+
+                      "items": {
+
+                        "type": "object",
+
+                        "properties": {
+
+                          "campo12": {
+
+                            "type": "boolean"
+
+                          }
+
+                        },
+
+                        "required": [
+
+                          "campo12"
+
+                        ]
+
+                      }
+
+                    }
+
+                  },
+
+                  "required": [
+
+                    "campo10",
+
+                    "campo11"
+
+                  ]
+
+                }
+
+              }
+
+            },
+
+            "required": [
+
+              "campo8",
+
+              "campo9"
+
+            ]
+
+          }
+
+        },
+
+        "required": [
+
+          "campo6",
+
+          "campo7"
+
+        ]
+
+      },
+
+      "campo13": {
+
+        "type": "number"
+
+      },
+
+      "campo14": {
+
+        "type": "array",
+
+        "items": {
+
+          "type": "object",
+
+          "properties": {
+
+            "campo15": {
+
+              "type": "object",
+
+              "properties": {
+
+                "campo16": {
+
+                  "type": "string"
+
+                },
+
+                "campo17": {
+
+                  "type": "boolean"
+
+                }
+
+              },
+
+              "required": [
+
+                "campo16",
+
+                "campo17"
+
+              ]
+
+            }
+
+          },
+
+          "required": [
+
+            "campo15"
+
+          ]
+
+        }
+
+      }
+
+    },
+
+    "required": [
+
+      "campo1",
+
+      "campo2",
+
+      "campo3",
+
+      "campo4",
+
+      "campo5",
+
+      "campo13",
+
+      "campo14"
+
+    ]
+
+  }

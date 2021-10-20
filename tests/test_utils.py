@@ -45,7 +45,7 @@ def test_working_with_arrays():
 
     test = working_with_arrays('testeArray', schemaLoad)[:-1]
 
-    resultAwaited = "testeArray:array<struct<userId:int,id:double,title:string,completed:boolean,testeObject:struct<id:double,name:string,testeObjectInObject:struct<id:double,name:string>>>,>"
+    resultAwaited = "testeArray:array<struct<userId:int,id:double,title:string,completed:boolean,testeObject:struct<id:double,name:string,testeObjectInObject:struct<id:double,name:string>>>>"
 
     assert test == resultAwaited
 
