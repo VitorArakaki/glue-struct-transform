@@ -1,8 +1,9 @@
-def working_with_objects(item:str, jsonSchemaLoadProp:dict, isArray:bool = False)->str:
+def working_with_objects(item: str, jsonSchemaLoadProp: dict, isArray: bool = False) -> str:
     """
-    This function works to provide a return in the glue structure format when the data type is specified as an object, further allowing the inclusion of objects in the object and arrays within it.
+    This function works to provide a return in the glue structure format when the data type is specified as an object,
+    further allowing the inclusion of objects in the object and arrays within it.
     """
-    if isArray == True:
+    if isArray:
         jsonSchemaObjectProp = jsonSchemaLoadProp[f'{item}']['items']
         returnStruct = f"struct<"
     else:
@@ -27,16 +28,17 @@ def working_with_objects(item:str, jsonSchemaLoadProp:dict, isArray:bool = False
             raise Exception("Null is not acceptable as a schema type on glue schema.")
         else:
             pass
-        
+
         returnStruct += objectStruct
     returnStruct = returnStruct[:-1] + ">,"
 
     return returnStruct
 
 
-def working_with_arrays(item:str, jsonSchemaLoadProp:dict)->str:
+def working_with_arrays(item: str, jsonSchemaLoadProp: dict) -> str:
     """
-    This function works to provide a return in the glue structure format when the data type is specified as array, further allowing the inclusion of objects in the array and other arrays within it.
+    This function works to provide a return in the glue structure format when the data type is specified as an array,
+    further allowing the inclusion of objects in the array and other arrays within it.
     """
     returnArrayStruct = f"{item}:array<"
     jsonSchemaArray = jsonSchemaLoadProp[f'{item}']['items']
@@ -44,7 +46,7 @@ def working_with_arrays(item:str, jsonSchemaLoadProp:dict)->str:
         arrayStruct = f"double,"
     elif 'string' in jsonSchemaArray['type']:
         arrayStruct = f"string,"
-    elif 'integer' in jsonSchemaLoadProp[f'{item}']['type']:
+    elif 'integer' in jsonSchemaArray['type']:
         arrayStruct = f"int,"
     elif 'boolean' in jsonSchemaArray['type']:
         arrayStruct = f"boolean,"
@@ -55,13 +57,13 @@ def working_with_arrays(item:str, jsonSchemaLoadProp:dict)->str:
     elif 'array' in jsonSchemaArray['type']:
         arrayStruct = working_with_arrays(item, jsonSchemaLoadProp)
     else:
-        pass
+        raise ValueError(f'Type can not be parsed: {jsonSchemaArray["type"]}')
 
     returnArrayStruct += arrayStruct[:-1] + ">,"
     return returnArrayStruct
 
 
-def working_with_types(item:str, jsonSchemaLoadProp:dict)->str:
+def working_with_types(item: str, jsonSchemaLoadProp: dict) -> str:
     """
     This function performs the basic handling for simple data types like number, string, integer... And for more complex types like array and object it asks for the help of another function.
     """
@@ -86,7 +88,7 @@ def working_with_types(item:str, jsonSchemaLoadProp:dict)->str:
     return returnStruct
 
 
-def working_with_objects_json_body(key:str, item:str, jsonBodyLoadProp:dict, isArray:bool = False)->str:
+def working_with_objects_json_body(key: str, item: str, jsonBodyLoadProp: dict, isArray: bool = False) -> str:
     """
     This function works to provide a return in the glue structure format when the data type is specified as an object, further allowing the inclusion of objects in the object and arrays within it.
     """
@@ -97,7 +99,6 @@ def working_with_objects_json_body(key:str, item:str, jsonBodyLoadProp:dict, isA
     else:
         jsonObjectProp = jsonBodyLoadProp
         returnStruct = f"{key}:struct<"
-
 
     for key, value in jsonObjectProp.items():
         objectStruct = ""
@@ -117,22 +118,21 @@ def working_with_objects_json_body(key:str, item:str, jsonBodyLoadProp:dict, isA
             objectStruct = working_with_arrays_json_body(key, value, jsonObjectProp[key])
         else:
             pass
-        
+
         returnStruct += objectStruct
     returnStruct = returnStruct[:-1] + ">,"
 
     return returnStruct
 
 
-def working_with_arrays_json_body(key, value:str, jsonSchemaLoadProp:dict)->str:
+def working_with_arrays_json_body(key, value: str, jsonSchemaLoadProp: dict) -> str:
     """
     This function works to provide a return in the glue structure format when the data type is specified as array, further allowing the inclusion of objects in the array and other arrays within it.
     """
     returnArrayStruct = f"{key}:array<"
-    
 
     if '{' in str(jsonSchemaLoadProp) and '}' in str(jsonSchemaLoadProp):
-            returnArrayStruct += working_with_objects_json_body(key, value, jsonSchemaLoadProp, True)
+        returnArrayStruct += working_with_objects_json_body(key, value, jsonSchemaLoadProp, True)
     else:
         jsonSchemaArray = jsonSchemaLoadProp[0]
         for key, value in jsonSchemaArray.items():
@@ -152,12 +152,12 @@ def working_with_arrays_json_body(key, value:str, jsonSchemaLoadProp:dict)->str:
                 pass
 
             returnArrayStruct += arrayStruct
-    
+
     returnArrayStruct = returnArrayStruct[:-1] + ">,"
     return returnArrayStruct
-    
 
-def working_with_types_json_body(key:str, value:str, jsonBodyLoadProp:dict)->str:
+
+def working_with_types_json_body(key: str, value: str, jsonBodyLoadProp: dict) -> str:
     """
     This function performs the basic handling for simple data types like number, string, integer... And for more complex types like array and object it asks for the help of another function.
     """
@@ -179,13 +179,13 @@ def working_with_types_json_body(key:str, value:str, jsonBodyLoadProp:dict)->str
     else:
         pass
 
-
     return returnStruct
 
 
-def struct_validator(glueStructString:str)->bool:
+def struct_validator(glueStructString: str) -> bool:
     """
-    This function works to validate the glue struct string generated by the main functions. But it can be used to check on demand glue struct strings too.
+    This function works to validate the glue struct string generated by the main functions.
+    But it can be used to check on demand glue struct strings too.
     """
     strict_inequality_count = glueStructString.count('<') + glueStructString.count('>')
 
