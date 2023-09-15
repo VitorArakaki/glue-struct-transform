@@ -23,7 +23,7 @@ build/
 
 # Byte-compiled / optimized / DLL files
 pycache/
-*__pycache__
+#*__pycache__
 
 # File-based project format
 *.iws
