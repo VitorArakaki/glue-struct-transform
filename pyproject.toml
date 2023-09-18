@@ -26,9 +26,7 @@ per-file-ignores = """
 
 [tool.isort]
 profile = 'black'
-src_paths = ['dbt', 'test']
+src_paths = ['glue_struct_transform', 'test']
 
 [tool.pytest.ini_options]
-testpaths = [
-    "tests",
-]
+testpaths = ["tests"]
