@@ -1,6 +1,6 @@
 ##  Jsonschema to Glue struct
 
-  
+
 
 A small library that works to read your provided jsonschema and convert it to a glue struct model, in this way you can integrate it in your pipeline or uses it just to get a output and insert manually in your glue table schema.
 

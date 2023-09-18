@@ -1,10 +1,10 @@
-from .utils import working_with_types, working_with_types_json_body, struct_validator
+from .utils import struct_validator, working_with_types, working_with_types_json_body
 
 
 class GlueStructTransform:
     """
     Instantiate a GlueStructTransform operation.
-    
+
     This is the glue transform class, you can call the function that converts:
     - Json Schema > Glue Struct
     """
@@ -18,13 +18,13 @@ class GlueStructTransform:
         and return a string in the glue structure format at the end.
         """
 
-        objectField = kwargs.get('objectField', None)
-        fullSchema = kwargs.get('fullSchema', True)
+        objectField = kwargs.get("objectField", None)
+        fullSchema = kwargs.get("fullSchema", True)
 
         if not fullSchema:
-            loopJsonSchemaLoadProp = self['properties'][f'{objectField}']['properties']
+            loopJsonSchemaLoadProp = self["properties"][f"{objectField}"]["properties"]
         else:
-            loopJsonSchemaLoadProp = self['properties']
+            loopJsonSchemaLoadProp = self["properties"]
 
         tempStruct = ""
         for item in loopJsonSchemaLoadProp:
@@ -44,9 +44,9 @@ class GlueStructTransform:
         and return a string in the glue structure format at the end.
         """
 
-        objectField = kwargs.get('objectField', None)
-        fullBody = kwargs.get('fullBody', True)
-        loopJsonBodyLoadProp = self if fullBody else self[f'{objectField}']
+        objectField = kwargs.get("objectField", None)
+        fullBody = kwargs.get("fullBody", True)
+        loopJsonBodyLoadProp = self if fullBody else self[f"{objectField}"]
         tempStruct = ""
 
         for key, value in loopJsonBodyLoadProp.items():
