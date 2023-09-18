@@ -4,10 +4,10 @@ def working_with_objects(item: str, jsonSchemaLoadProp: dict, isArray: bool = Fa
     further allowing the inclusion of objects in the object and arrays within it.
     """
     if isArray:
-        jsonSchemaObjectProp = jsonSchemaLoadProp[f"{item}"]["items"]
+        jsonSchemaObjectProp = jsonSchemaLoadProp[item]["items"]
         returnStruct = "struct<"
     else:
-        jsonSchemaObjectProp = jsonSchemaLoadProp[f"{item}"]
+        jsonSchemaObjectProp = jsonSchemaLoadProp[item]
         returnStruct = f"{item}:struct<"
 
     for values in jsonSchemaObjectProp["properties"]:
@@ -69,19 +69,19 @@ def working_with_types(item: str, jsonSchemaLoadProp: dict) -> str:
     For more complex types like an array and object, it asks for the help of another function.
     """
     returnStruct = ""
-    if "number" in jsonSchemaLoadProp[f"{item}"]["type"]:
+    if "number" in jsonSchemaLoadProp[item]["type"]:
         returnStruct = f"{item}:double,"
-    elif "string" in jsonSchemaLoadProp[f"{item}"]["type"]:
+    elif "string" in jsonSchemaLoadProp[item]["type"]:
         returnStruct = f"{item}:string,"
-    elif "integer" in jsonSchemaLoadProp[f"{item}"]["type"]:
+    elif "integer" in jsonSchemaLoadProp[item]["type"]:
         returnStruct = f"{item}:int,"
-    elif "boolean" in jsonSchemaLoadProp[f"{item}"]["type"]:
+    elif "boolean" in jsonSchemaLoadProp[item]["type"]:
         returnStruct = f"{item}:boolean,"
-    elif "null" == jsonSchemaLoadProp[f"{item}"]["type"]:
+    elif "null" == jsonSchemaLoadProp[item]["type"]:
         raise Exception("Null is not acceptable as a schema type on glue schema.")
-    elif "object" in jsonSchemaLoadProp[f"{item}"]["type"]:
+    elif "object" in jsonSchemaLoadProp[item]["type"]:
         returnStruct = working_with_objects(item, jsonSchemaLoadProp)
-    elif "array" in jsonSchemaLoadProp[f"{item}"]["type"]:
+    elif "array" in jsonSchemaLoadProp[item]["type"]:
         returnStruct = working_with_arrays(item, jsonSchemaLoadProp)
     else:
         pass
@@ -163,7 +163,7 @@ def working_with_arrays_json_body(key, value: str, jsonSchemaLoadProp: dict) -> 
 def working_with_types_json_body(key: str, value: str, jsonBodyLoadProp: dict) -> str:
     """
     This function performs the basic handling for simple data types like number, string, integer.
-    For more complex types like array and object it asks for the help of another function.
+    For more complex types like an array and object, it asks for the help of another function.
     """
     returnStruct = ""
     if "int" in str(type(value)):
